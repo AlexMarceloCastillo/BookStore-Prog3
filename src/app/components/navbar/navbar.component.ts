@@ -30,9 +30,9 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  
+
   onLogOut(){
-    this.afsAuth.auth.signOut();
+    this.afsAuth.signOut();
   }
 
 
