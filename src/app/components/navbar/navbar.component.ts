@@ -21,10 +21,8 @@ export class NavbarComponent implements OnInit {
   getCurrentUser(){
     this.authService.isAuth().subscribe(auth => {
       if(auth){
-        console.log("user loged");
         this.isLogged = true;
       }else{
-        console.log("user not loged");
         this.isLogged = false;
       }
     });

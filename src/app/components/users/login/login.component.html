@@ -6,10 +6,10 @@
             <div class="card">
               <div class="card-body text-center">
                 <form #formLogin="ngForm" (submit)="onLogin()">
-                  <h1 class="h3 mb-3 font-weight-normal" *ngIf="!isError">Login</h1>
-                  <div class="alert alert-danger" role="alert" *ngIf="isError">
+                  <!-- <h1 class="h3 mb-3 font-weight-normal" *ngIf="!isError">Login</h1> -->
+                  <!-- <div class="alert alert-danger" role="alert" *ngIf="isError">
                     Something is wrong!
-                  </div>
+                  </div> -->
                   <div class="form-group">
                     <input [(ngModel)]="email" type="email" id="email" name="email" class="form-control" placeholder="Email" required>
                   </div>
@@ -21,7 +21,7 @@
                   <div class="form-group">
                     <a routerLink="/user/register" class="form-control login-user">Are you new ?</a>
                   </div>
-                  <div>                    
+                  <div>
                       <div class="form-group">
                           <button href="#" class="btn btn-block btn-social btn-facebook" (click) = "onLoginFacebook()">
                             <span class="fa fa-facebook"></span>

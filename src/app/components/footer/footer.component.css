@@ -1,0 +1,25 @@
+footer {
+  background-color: black;
+  padding: 2.5%;
+}
+.contenedor-footer{
+  width: 90%;
+  margin: auto;
+  justify-content: space-between;
+}
+.info{
+  width: 75%;
+  color:white;
+  justify-content: space-around;
+}
+.logos {
+  width: 25%;
+  text-align: right;
+}
+.logos i{
+  color: white;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 5%;
+  margin-bottom: 5;
+}

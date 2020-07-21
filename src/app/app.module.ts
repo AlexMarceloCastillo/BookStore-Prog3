@@ -22,6 +22,7 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFirestore} from '@angular/fire/firestore';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {AngularFirestore} from '@angular/fire/firestore';
     LoginComponent,
     ProfileComponent,
     RegisterComponent,
-    Page404Component
+    Page404Component,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
