@@ -12,7 +12,7 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router,private storage: AngularFireStorage) { 
+  constructor(private authService: AuthService, private router: Router,private storage: AngularFireStorage) {
 
   }
 
@@ -21,9 +21,9 @@ export class RegisterComponent implements OnInit {
   public email: string = "";
 
   public pass: string = "";
-  
+
   uploadPercent: Observable<number>;
-  
+
   urlImage: Observable<string>;
 
 
@@ -52,9 +52,9 @@ export class RegisterComponent implements OnInit {
             photoURL: this.inputImageUser.nativeElement.value,
           })
         }
+        this.onLoginRedirect();
       });
     }).catch(err => console.log("err",err.message));
-    this.router.navigate(['admin/list-books']);
   }
 
   onLoginGoogle():void{
@@ -62,7 +62,7 @@ export class RegisterComponent implements OnInit {
     .then((res)=>{
       this.onLoginRedirect();
     }).catch(err => console.log("err",err.message));
-    
+
   }
 
   onLoginFacebook(): void{
@@ -71,7 +71,7 @@ export class RegisterComponent implements OnInit {
       this.onLoginRedirect();
     }).catch( err => console.log("err",err.message));
   }
-  
+
   onLoginRedirect(): void{
     this.router.navigate(['admin/list-books']);
   }
