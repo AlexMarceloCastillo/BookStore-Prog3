@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import {AngularFireStorage} from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs/internal/Observable';
+import {FormControl,FormGroup,Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -13,25 +14,40 @@ import { Observable } from 'rxjs/internal/Observable';
 export class RegisterComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router,private storage: AngularFireStorage) {
-
+    this.registerForm = this.createRegisterForm();
   }
 
   @ViewChild('imageUser') inputImageUser: ElementRef;
 
-  public email: string = "";
 
-  public pass: string = "";
+
+  // public email: string = "";
+  //
+  // public pass: string = "";
 
   uploadPercent: Observable<number>;
 
   urlImage: Observable<string>;
 
+  registerForm: FormGroup;
+
 
   ngOnInit() {
   }
 
+  createRegisterForm(){
+    const emailPattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.minLength(8),Validators.maxLength(50), Validators.pattern(emailPattern)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(5),Validators.maxLength(10)])
+    })
+  }
+
+  get email() { return this.registerForm.get('email'); }
+  get password() { return this.registerForm.get('password'); }
+
   onUpload(e: { target: { files: any[]; }; }){
-    console.log(e,e.target.files[0]);
+    //console.log(e,e.target.files[0]);
     const id = Math.random().toString(36).substring(2);
     const file = e.target.files[0];
     const filePath = `uploads/profile_${id}`;
@@ -43,7 +59,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onAddUser(){
-    this.authService.registerUser(this.email,this.pass)
+    this.authService.registerUser(this.registerForm.value.email,this.registerForm.value.password)
     .then((res)=> {
       this.authService.isAuth().subscribe(user =>{
         if(user){

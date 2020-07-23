@@ -16,6 +16,7 @@ import { RegisterComponent } from './components/users/register/register.componen
 import { Page404Component } from './components/page404/page404.component';
 import {FormsModule} from '@angular/forms';
 import {environment} from '../environments/environment';
+import {ReactiveFormsModule} from '@angular/forms';
 
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
@@ -46,7 +47,8 @@ import { FooterComponent } from './components/footer/footer.component';
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    ReactiveFormsModule
   ],
   providers: [AngularFireAuth, AngularFirestore],
   bootstrap: [AppComponent]

@@ -1,63 +1,87 @@
 <section id="register" class="mb-5 mt-5">
-    <div class="container">
-      <div class="row">
+  <div class="container">
+    <div class="row">
 
-        <div class="col-xs-12 col-sm-6 col-md-4 mx-auto">
-          <div class="card_register">
-            <div class="card">
-              <div class="card-body text-center">
-                <form #formRegister="ngForm" (ngSubmit)="onAddUser()">
-                  <h1 class="h3 mb-3 font-weight-normal">Register</h1>
-                  <!-- <div class="alert alert-danger" role="alert" *ngIf="isError">
-                    {{msgError}}
-                  </div> -->
-                  <div class="form-group">
-                    <input type="email" name="email" class="form-control" placeholder="Email" [(ngModel)]="email" required
-                      minlength="8">
-                  </div>
-                  <!-- <div class="alert alert-danger" role="alert" *ngIf="email.touched && !email.valid">
-                    <div *ngIf="email.errors.required">Email is required</div>
-                    <div *ngIf="email.errors.minlength">Email must be at least 8 characters</div>
-                  </div> -->
-                  <div class="form-group">
-                    <input type="password" name="password" class="form-control" placeholder="Password" [(ngModel)]="pass"
-                      required minlength="5" maxlength="10">
-                  </div>
-                  <hr>
-                  <div class="form-group">
-                     <h5>Seleccionar imagen</h5>
-                      <input type="file" accept=".png, .jpg" (change)="onUpload($event)" style="width: 100%;font-size: 10px;">
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
-                    [style.width]="(uploadPercent | async) + '%'"></div>
-                  </div>
-                  <br>
-                  <input #imageUser type="hidden" [value]="urlImage |  async">
-                  <button *ngIf="urlImage |  async; else btnDisabled"
-                  type="submit" class="btn btn-lg btn-primary btn-block">Register</button>
-                  <ng-template #btnDisabled>
-                     <button  type="submit" disabled=true class="btn btn-lg btn-secondary btn-block">Register</button>
-                  </ng-template>
-
-                  <div class="form-group">
-                    <a routerLink="user/login" class="form-control login-user">Do you have account?</a>
-                  </div>
-                  <div class="form-group">
-                      <button href="#" class="btn btn-block btn-social btn-facebook" (click) = "onLoginFacebook()">
-                        <span class="fa fa-facebook"></span>
-                        FACEBOOK
-                      </button>
-                      <button href="#" class="btn btn-block btn-social btn-google" (click) = "onLoginGoogle()">
-                        <span class="fa fa-google"></span>
-                        GOOGLE
-                      </button>
+      <div class="col-xs-12 col-sm-6 col-md-4 mx-auto">
+        <div class="card_register">
+          <div class="card">
+            <div class="card-body text-center">
+              <form [formGroup]="registerForm" (ngSubmit)="onAddUser()">
+                <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+                <div class="form-group">
+                  <input type="email" formControlName="email" class="form-control" placeholder="Email" required>
+                  <div class="alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+                    <div class="container-error-message" *ngIf="email.errors.required">
+                      The Email is required.
                     </div>
-                </form>
+                    <div class="container-error-message" *ngIf="email.errors.minlength">
+                      The email must be at least 5 characters.
+                    </div>
+
+                    <div class="container-error-message" *ngIf="email.errors.maxlength">
+                      The email had a maximum of 50 characters.
+                    </div>
+                    <div class="container-error-message"
+                    *ngIf="(email.dirty || email.touched) && email.invalid && email.errors.pattern">
+                    Value has to be a valid email address.
+                  </div>
+                </div>
               </div>
-            </div>
+
+              <div class="form-group">
+                <input type="password" formControlName="password" class="form-control" placeholder="" required maxlength="10">
+                <div class="alert-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
+                  <div class="container-error-message" *ngIf="password.errors.required">
+                    The password is required
+                  </div>
+                  <div class="container-error-message" *ngIf="password.errors.minlength">
+                    The password must be at least 5 characters.
+                  </div>
+
+                  <div class="container-error-message" *ngIf="password.errors.maxlength">
+                    The password had a maximum of 10 characters.
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <h5>Seleccionar imagen</h5>
+                <input type="file" accept=".png, .jpg" (change)="onUpload($event)" style="width: 100%;font-size: 10px;">
+              </div>
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                [style.width]="(uploadPercent | async) + '%'"></div>
+              </div>
+              <br>
+              <input #imageUser type="hidden" [value]="urlImage |  async">
+
+              <div  *ngIf="urlImage |  async; else invalido">
+
+                <button type="submit" class="btn btn-primary btn-lg" name="button" [disabled] = "!registerForm.valid">Register</button>
+
+              </div>
+              <ng-template #invalido>
+
+                <button type="submit" class="btn btn-secondary btn-lg" name="button" [disabled] = "true">Register</button>
+              </ng-template>
+              <div class="form-group">
+                <a routerLink="/user/login" class="form-control login-user">Do you have account?</a>
+              </div>
+              <div class="form-group">
+                <button href="#" class="btn btn-block btn-social btn-facebook" (click) = "onLoginFacebook()">
+                  <span class="fa fa-facebook"></span>
+                  FACEBOOK
+                </button>
+                <button href="#" class="btn btn-block btn-social btn-google" (click) = "onLoginGoogle()">
+                  <span class="fa fa-google"></span>
+                  GOOGLE
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
+</section>
