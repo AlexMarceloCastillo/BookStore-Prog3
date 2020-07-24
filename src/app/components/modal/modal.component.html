@@ -10,9 +10,9 @@
         </button>
       </div>
       <div class="modal-body">
-        <form #formBook="ngForm" name="formBook" (ngSubmit)="onSaveBook(formBook)"> 
+        <form #formBook="ngForm" name="formBook" (ngSubmit)="onSaveBook(formBook)">
             <input type="hidden" name="id" [(ngModel)]="this.dataApi.selectedBook.id">
-            <input type="hidden" name="userUid" [value] = "userUid"> 
+            <input type="hidden" name="userUid" [value] = "userUid">
           <div class="form-group">
             <label for="titulo" class="col-form-label">Titulo: </label>
             <input type="text" class="form-control" name="titulo" [(ngModel)]="this.dataApi.selectedBook.titulo">
@@ -22,7 +22,7 @@
                   <label for="idioma">Idioma:</label>
                   <select name="idioma"  class="form-control" [(ngModel)]="this.dataApi.selectedBook.idioma">
                     <option value="Inglés">Inglés</option>
-                    <option value="Inglés">Castellano</option>
+                    <option value="Castellano">Castellano</option>
                   </select>
               </div>
               <div class="form-group col-md-6">
@@ -50,14 +50,14 @@
               </div>
               <div class="form-group col-md-6">
                   <label for="link_amazon">Link Amazon</label>
-                  <input type="text" class="form-control" name="link_amazon" placeholder="Link Amazon" [(ngModel)]="this.dataApi.selectedBook.link_amazon"> 
+                  <input type="text" class="form-control" name="link_amazon" placeholder="Link Amazon" [(ngModel)]="this.dataApi.selectedBook.link_amazon">
               </div>
           </div>
           <div class="form-group">
             <label for="descripcion" class="col-form-label">Descripcion:</label>
             <textarea class="form-control" name="descripcion" [(ngModel)]="this.dataApi.selectedBook.descripcion"></textarea>
           </div>
-          
+
       <div class="modal-footer">
             <button type="button" class="btn btn-secondary" #btnClose data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary">Save Book</button>
