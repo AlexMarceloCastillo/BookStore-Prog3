@@ -29,4 +29,8 @@ export class ModalComponent implements OnInit {
     this.btnClose.nativeElement.click();
   }
 
+  resetNg(bookForm: NgForm): void{
+    bookForm.resetForm()
+  }
+
 }
