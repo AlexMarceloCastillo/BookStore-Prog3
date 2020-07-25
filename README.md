@@ -1,3 +1,12 @@
+#Usuarios
+Tipo Editor
+email: editor@gmail.com
+password: editor1234
+
+Tipo Administrador
+email: administrador@gmail.com
+password: admin1234
+
 # BookStore
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.4.
